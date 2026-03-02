@@ -1,0 +1,17 @@
+<<< .then() v/s Async-await question
+
+
+
+
+<<< What happens when we search for Google.com and click enter on our browswer of similar.
+So Things that happen in our browser after we fire the request (firing req to a backend server is we'll learn later.)
+<Browser Parses The URL>
+<Does a DNS Look up. DNS look up is basically Going to the IP of that URL.>
+Hume lgta h hum google.com pe jaare but what we are really doing is going to the IP address of that URL. 
+Way to find the location of a server is by using IPs
+<When we open chatgpt for ex toh DNS Resolution happens. Which means DNS finds the IP address to which the URL of chatgpt is connected to. I THINKKK. >
+<Then it establishes a connection to the IP (Call it doing handshake.)>
+
+Search exact for DNS RESOLUTION.************
+
+
