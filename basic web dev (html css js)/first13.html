@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEC_13</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- went to cdnjs.com >>> libraries >>> font-awesome  and copied the "link tag" and pasted here. -->
+    <!-- toh ab we can directly paste the code of any icon from font-awesome website to here and it would be fine. -->
+    <link rel="stylesheet" href="style13.css">
+</head>
+<body>
+    
+    <p id="fact1"></p>
+    <button id="btn">fact1</button>
+    <div class="container">
+        <h2>CURRENCY CONVERTER</h2>
+        <form>
+            <div class="amount">
+                <p>Enter Amount</p>
+                <input type="text" value="100">
+            </div>
+            <div class="dropdown">
+                <div class="from">
+                    <p>From</p>
+                    <div class="selectContainer">
+                        <img src="https://flagsapi.com/US/flat/64.png">
+                        <select name="from" id="from">
+                            <option value="USD" selected>USD</option>
+                            <option value="INR">INR</option>
+                            <option value="USD">EUR</option>
+                            <option value="INR">AUD</option>
+                        </select>
+                    </div>
+                </div>  
+                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+
+                <div class="to">
+                    <p>To</p>
+                    <div class="selectContainer">
+                        <img src="https://flagsapi.com/IN/flat/64.png">
+                        <select name="to" id="to">
+                            <option value="USD">USD</option>
+                            <option value="INR" selected>INR</option>
+                            <option value="USD">EUR</option>
+                            <option value="INR">AUD</option>
+                        </select>
+                    </div>
+                </div>  
+            </div>
+            <div class="msg">
+                1 USD = 80 INR
+            </div>
+            <button>Get Exhange Rate</button>
+        </form>
+    </div>
+    <script src="path/to/currencyapi-js/index.js"></script>
+    <script src="first13.js"></script>
+</body>
+</html>

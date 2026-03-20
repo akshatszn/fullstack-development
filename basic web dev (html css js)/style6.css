@@ -1,0 +1,20 @@
+h1 {
+    color: blue;
+    background-color: yellow;
+}
+body {
+    background-color: pink;
+}
+button{
+    color: white; 
+    background-color: aqua;
+}
+.box{
+    height: 100px;
+    width: 100px;  /* height and width are basically height and width of the content inside respective divs which will appear like a box and especially a square box jab height and width same li*/
+    border: 1px solid black;
+    margin: 5px;    /*this will give gaps between our boxes*/
+    text-align: center;
+    background-color: aquamarine;
+    color: aliceblue; /* will change the color of the text in the div of */
+}

@@ -1,0 +1,10 @@
+
+Now create a todo app that lets users store their todos on a server.
+
+Try to create a http server from scratch in c
+
+create an http server in rust using actix-web
+
+create an http server in golang using the gurrilla framework.
+
+spring boot java

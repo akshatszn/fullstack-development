@@ -14,4 +14,27 @@ Way to find the location of a server is by using IPs
 
 Search exact for DNS RESOLUTION.************
 
+The real flow of your server
 
+Your code works like this:
+
+User request
+      ↓
+Express route match
+      ↓
+callback(req,res)
+      ↓
+logic runs
+      ↓
+res.send()
+      ↓
+response sent to client
+10. One interview-level concept you should know
+
+Express internally does something like:
+
+request → router → middleware → route handler → response
+
+This concept is called:
+
+Middleware architecture

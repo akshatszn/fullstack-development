@@ -175,3 +175,216 @@ NodeJS is used to create HTTP servers
 Express is used to create HTTP APIs
 
 Focus on the code. Things will get clearer in the future.
+
+***************IMP********************
+Difference between public and private IPs:
+There are limited IPs. All the systems in my building have something called a private IP as well.
+Router of the building will have a Public address, but we'll not. We'll have a private address.
+THat is the reason sirf same wifi connected systems mei hum apna server host kr skte h. someone sitting in Jaipur will not be able to access my server.
+
+ AWS is one of the famous places where can deploy ur code so everyone in the world can accesss it.
+ And gives u a public IP. Ofcourse.
+
+ USE OF POSTMAN:
+ So basically we know ki browser wagerah requests bhejte h 
+ Postman is used for that exact purpose but very specific. 
+ like ek exact type ki request bheji humne toh uska result ky aara h woh check krne ke liye we use postman. 
+ Instead of typing that whole address on url we just give to POstman and tell it what kind of request it is.
+ and it gives the result we can analyse.
+ And plus browser shyd mostly frontend hee result krta h. Agr result koi JSON form mei h toh obviously woh thodi dikhega hume.
+ But when using postman if we do like:
+
+ app.post('/conversations', function(req,res){  // type of request is "post" obviously
+   req.send({
+      msg: "2+2=4"
+   }) //but ye sending toh hum har type ki request mei kr skte h.
+   //now lets use "post" req for what it is toh lets check on some data that is being send by the user while requesting it.
+   console.log(req.headers)
+   // headers are something that we are always sending.
+   // the above codeline will give all the headers that are being send in an object.
+   // we can ask for a specific header tpp jus by writing req.header["auth"];
+ })
+
+ if we post to postman ki http://localhost::3000/conversations and set type of request as "post"
+ then we'll get this exact JSON 
+
+ Difference bw fs and express***************************************
+ Firstly toh both are librariesa nd they give functions for us to use.
+
+ fs = filesystem =>> used to read/Write files on system.
+
+ express = gives us app applicable functions like ye jo .get() h ye express ne hee diya h.
+ HTTP server toh bana ke dedega NodeJS but usse shi se access/use krne ke liye we need functions from express library.
+  
+req contains:
+
+Property	       Meaning
+req.headers	    request headers
+req.body	       data sent by client
+req.query	    query params
+req.params	    route params
+
+computer ek badi si machine h and ports are like gates to the rooms.
+
+https://google.com
+Behind the scenes:
+google.com → IP address
+IP → port 443
+So it becomes something like:
+142.250.183.46:443
+
+So basically hum apni building mei baith ke( apne system se)
+Browser ko bolte h google ka saara data leke aa so i can use it. 
+And woh leke aata h and usse hum apne ghar ke ROOM NUMBER $$# mei hee rakkhte h cuz woh secure h.
+Sabki buildings mei ROOM NUMBER $$# hee secure h cuz 443 mei ek https naam ka bodyguard rehta H
+
+** ye humesha yaad rakkhna request krte time ki request ke baad data humaare paas aayega.
+
+** Insight: http://localhost:3000 and http://localhost:3000/ are same. Similarly http://localhost:3000/acfg and http://localhost:3000/acfg/ are same.
+Basically an extra slash at the end doesnt mean anything.
+
+** jo public companies hoti h woh sab kisi bhi specific backend server se link ho skti h.
+And uye jo backend servers hote h ye har request ko check krte h ki ye jis DOMAIN NAME  seaari h woh registered h yaa ni.
+Registered in the sense this domain has access to this server. Rest all domains agr iss server ko bulaayenge toh ye answer ni krega.
+and if we directly write that backend server ip on our browser toh ofc it wont answer.
+
+
+MIDDLEWARE **********************************************************************
+1. Logging (the one you used)
+app.use((req,res,next)=>{
+  console.log(req.method, req.url)
+  next()
+})
+
+Purpose
+see every request hitting your serve
+debug routing problem
+monitor traffic
+
+Example terminal output:
+
+GET /
+POST /login
+POST /conversations
+GET /profile
+This is used in almost every backend.
+
+2. Parsing request body
+This is probably the most common middleware.
+app.use(express.json())
+When a client sends JSON:
+POST /login
+{
+  "username": "harsh",
+  "password": "123"
+}
+Without middleware:
+req.body = undefined
+
+With middleware:
+req.body = { username: "harsh", password: "123" 
+So this middleware converts raw HTTP data into usable JavaScript objects.
+
+3. Authentication (very common)
+Middleware can check if the user is logged in before allowing access.
+Example:
+function authMiddleware(req,res,next){
+  const token = req.headers.authorization
+
+  if(token === "valid-token"){
+    next()
+  } else {
+    res.status(401).send("Unauthorized")
+  }
+}
+app.use(authMiddleware)
+
+Now every request must pass authentication before reaching routes.
+This is used in things like:
+/profile
+/dashboard
+/payment
+/messages
+4. Rate limiting (protect server from spam)
+Middleware can prevent abuse.
+Example:
+User sends 500 requests/sec
+Middleware blocks them.
+Used in:
+login APIs
+payment APIs
+OTP APIs
+
+5. Validation
+CheCk if incoming data is correct before route logic runs.
+Example:
+POST /signup
+User must send:
+email
+password
+Middleware checks:
+if email missing → reject request
+Instead of letting the route crash later.
+
+6. Security
+Middleware adds security protections.
+Examples:
+block suspicious IPs
+sanitize inputs
+add secure HTTP headers
+Libraries like:
+helmet
+cors
+express-rate-limit
+are all middleware.
+
+7. Performance tracking
+Middleware can measure API speed.
+Example:
+app.use((req,res,next)=>{
+  const start = Date.now()
+
+  res.on("finish", ()=>{
+    const time = Date.now() - start
+    console.log(req.method, req.url, time+"ms")
+  })
+
+  next()
+})
+
+Output:
+POST /login 42ms
+GET /products 18ms
+POST /payment 120ms
+Backend engineers use this a lot.
+Why middleware exists
+Without middleware you'd have to repeat code like this in every route:
+app.post('/login', ()=>{
+   checkAuth()
+   validateData()
+   logRequest()
+})
+Middleware lets you write it once and reuse it everywhere.
+
+Real production request flow****************
+A real backend request often looks like this:
+
+Request arrives
+      ↓
+Logger middleware
+      ↓
+Security middleware
+      ↓
+CORS middleware
+      ↓
+JSON parser middleware
+      ↓
+Authentication middleware
+      ↓
+Validation middleware
+      ↓
+Route logic
+      ↓
+Database
+      ↓
+Response

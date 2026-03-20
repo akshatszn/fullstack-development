@@ -1,0 +1,84 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+body{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4e4ba;
+}
+
+.container{
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+    min-height: 45vh;
+    width: 40vh;
+}
+
+form{
+    margin: 2rem 0 1rem 0;    /* all four top bottom right left ki likkhdi. 2 rem top ki h 1 rem bottom ki idk which one is left & right */
+}
+
+form select, button, input {
+    width: 100%;  /* mtlb 100% of form width cover krenge ye elements of form that are select button input.*/
+    border: none;
+    outline: none;  /* html jo default border and outline deta h woh hata dii.*/
+}
+
+/* poore form ka sab border and outline wagerah hata diya and ab unke individual borders daalenege. sabki border radius same rakkhni h toh woh upar hee dec;are kr dii.*/
+
+form input{
+    border: 1px solid lightgray;
+    font-size: 1rem;
+    height: 3rem;
+    padding-left: 0.5rem;  
+}
+
+/* dono dropdown containers same line mei chahiye and dono humne "dropdown" class mei daale hue h.*/
+.dropdown{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.selectContainer img{
+    max-height: 2rem;  /* chota krne ke liye flag ko */
+}
+
+.dropdown i{
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
+
+.selectContainer{
+    display: flex; /* so that flag and dropdown same level pe aajaye. */
+    width: 6rem;
+    justify-content: center;
+    align-items: center;
+    /*background-color: red; */
+    border-radius: 0.5rem;  /* upar ke saaath selectContainer ko border radius ni diya tha toh yahan diya. */
+    /* background color upar sirf tabhi daala to see our flag and dropdown separately. and unpe border radius check kr ske. */
+}
+
+.selectContainer select{
+    font-size: 1rem;
+    width: auto;
+}
+
+.msg{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+form button{
+    height: 3rem;
+    background-color: #af4d98;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+}

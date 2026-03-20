@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete HTML Example - All Topics</title>
+</head>
+<body>
+    <!-- HTML5 Semantic Elements -->
+    <header>
+        <h1>Website Header</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Headings -->
+        <section>
+            <h1>Main Heading (h1)</h1>
+            <h2>Subheading (h2)</h2>
+            <h3>Smaller Heading (h3)</h3>
+            <h4>Even Smaller (h4)</h4>
+            <h5>Small Heading (h5)</h5>
+            <h6>Smallest Heading (h6)</h6>
+        </section>
+
+        <!-- Paragraphs -->
+        <section>
+            <h2>Paragraphs</h2>
+            <p>This is a regular paragraph. It contains text that forms a block of content.</p>
+            <p>This is another paragraph with some <strong>bold text</strong> and <em>italic text</em>.</p>
+        </section>
+
+        <!-- Lists -->
+        <section>
+            <h2>Ordered List</h2>
+            <ol>
+                <li>First item</li>
+                <li>Second item</li>
+                <li>Third item</li>
+                <li>Fourth item</li>
+            </ol>
+
+            <h2>Unordered List</h2>
+            <ul>
+                <li>Apple</li>
+                <li>Banana</li>
+                <li>Orange</li>
+                <li>Grapes</li>
+            </ul>
+
+            <h2>Descriptive List</h2>
+            <dl>
+                <dt>HTML</dt>
+                <dd>HyperText Markup Language - used for creating web pages</dd>
+                
+                <dt>CSS</dt>
+                <dd>Cascading Style Sheets - used for styling web pages</dd>
+                
+                <dt>JavaScript</dt>
+                <dd>Programming language for web interactivity</dd>
+            </dl>
+        </section>
+
+        <!-- Tables -->
+        <section>
+            <h2>Student Data Table</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Name</th>
+                        <th>Course</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>John Smith</td>
+                        <td>Web Development</td>
+                        <td>A</td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>Sarah Johnson</td>
+                        <td>Data Science</td>
+                        <td>B+</td>
+                    </tr>
+                    <tr>
+                        <td>003</td>
+                        <td>Mike Brown</td>
+                        <td>Mobile Development</td>
+                        <td>A-</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">Total Students</td>
+                        <td>3</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+
+        <!-- Forms and Input Fields -->
+        <section>
+            <h2>Registration Form</h2>
+            <form id="registrationForm" onsubmit="return handleFormSubmit(event)">
+                <!-- Text Input -->
+                <div>
+                    <label for="fullName">Full Name:</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                <br>
+
+                <!-- Email Input -->
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <br>
+
+                <!-- Password Input -->
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <br>
+
+                <!-- Number Input -->
+                <div>
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="age" min="1" max="100">
+                </div>
+                <br>
+
+                <!-- Date Input -->
+                <div>
+                    <label for="birthdate">Birth Date:</label>
+                    <input type="date" id="birthdate" name="birthdate">
+                </div>
+                <br>
+
+                <!-- Radio Buttons -->
+                <div>
+                    <label>Gender:</label>
+                    <input type="radio" id="male" name="gender" value="male">
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female">Female</label>
+                    <input type="radio" id="other" name="gender" value="other">
+                    <label for="other">Other</label>
+                </div>
+                <br>
+
+                <!-- Checkboxes -->
+                <div>
+                    <label>Interests:</label>
+                    <input type="checkbox" id="web" name="interests" value="web">
+                    <label for="web">Web Development</label>
+                    <input type="checkbox" id="mobile" name="interests" value="mobile">
+                    <label for="mobile">Mobile Development</label>
+                    <input type="checkbox" id="data" name="interests" value="data">
+                    <label for="data">Data Science</label>
+                </div>
+                <br>
+
+                <!-- Select Dropdown -->
+                <div>
+                    <label for="country">Country:</label>
+                    <select id="country" name="country">
+                        <option value="">Select Country</option>
+                        <option value="usa">United States</option>
+                        <option value="canada">Canada</option>
+                        <option value="uk">United Kingdom</option>
+                        <option value="india">India</option>
+                        <option value="australia">Australia</option>
+                    </select>
+                </div>
+                <br>
+
+                <!-- Textarea -->
+                <div>
+                    <label for="bio">Bio:</label><br>
+                    <textarea id="bio" name="bio" rows="4" cols="50" placeholder="Tell us about yourself..."></textarea>
+                </div>
+                <br>
+
+                <!-- Buttons -->
+                <div>
+                    <button type="submit">Submit Form</button>
+                    <button type="reset">Reset Form</button>
+                    <button type="button" onclick="showPrompt()">Show Prompt</button>
+                    <button type="button" onclick="showConfirm()">Show Confirm</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Multimedia Elements -->
+        <section>
+            <h2>Multimedia Elements</h2>
+            
+            <h3>Image</h3>
+            <img src="https://via.placeholder.com/400x200" alt="Placeholder Image" width="400" height="200">
+            
+            <h3>Audio</h3>
+            <audio controls>
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            
+            <h3>Video</h3>
+            <video width="400" controls>
+                <source src="https://www.sample-videos.com/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </section>
+
+        <!-- Additional Semantic Elements -->
+        <aside>
+            <h3>Sidebar Content</h3>
+            <p>This is additional content in an aside element.</p>
+        </aside>
+
+        <article>
+            <h3>Article Title</h3>
+            <p>This is an independent article that could be distributed separately.</p>
+        </article>
+    </main>
+
+    <!-- Container and Div -->
+    <div>
+        <h3>Generic Container (div)</h3>
+        <p>This content is inside a div element, which is a generic container.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 My Website. All rights reserved.</p>
+        <p>Contact: email@example.com</p>
+    </footer>
+
+    <script>
+        // JavaScript functions for form handling and dialog boxes
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            alert('Form submitted successfully!');
+            return false;
+        }
+
+        function showPrompt() {
+            const name = prompt('Please enter your name:', 'John Doe');
+            if (name !== null) {
+                alert('Hello, ' + name + '!');
+            }
+        }
+
+        function showConfirm() {
+            const result = confirm('Are you sure you want to continue?');
+            if (result) {
+                alert('You clicked OK!');
+            } else {
+                alert('You clicked Cancel!');
+            }
+        }
+
+        // Click event handler
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('button[type="button"]');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    console.log('Button clicked: ' + this.textContent);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

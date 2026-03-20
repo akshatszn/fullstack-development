@@ -1,0 +1,174 @@
+LEC 2.3 & LEX 2.4 BOTH ARE HERE.
+
+What are Terminals?
+Terminal is nothing but just another interface for doing things on your machine.
+LIke locating a file, opening it, renaming it, changing its content etc.
+iTs just that we do that here using commands.
+
+directory means FOLDER jus so uk.
+
+pwd         mtlb print working directory.
+cd          mtlb change directory.
+cd ..       mtlb going to the previous folder.   for multiple, use cd../../.. so on
+ls          mtlb list all the files and folders in the current folder.
+mkdir       mtlb make directory.  for multiple, use mkdir folder1 folder2 folder3 so on
+rmdir       mtlb remove directory.  for multiple, use rmdir folder1 folder2 folder3 so on
+rm          mtlb remove file.       for multiple, use rm file1 file2 file3 so on
+touch       mtlb create a file.     for multiple, use touch file1 file2 file3 so on
+cat         mtlb concatenate and print the content of a file. Used to see the content inside the file.
+cp          mtlb copy a file.
+mv          mtlb move a file.
+// moving is similar to like cutting. copy is just that copying hee.
+// synatx for copying/moving is simple.
+// mv is also used for renaminga file. like ex:  mv script.js readme.js will change the file name.
+cp <source> <destination>
+mv <source> <destination>
+
+man         mtlb manual.
+clear       mtlb clear the screen.  
+
+vi          used to directly edit a file from terminal.
+            use i to insert text.
+            use esc to exit insert mode.
+            use :wq to save and exit.
+            use :q! to exit without saving. 
+
+kisi specific folder ke andar ki files dekhni h toh we write:  ls 'folder ka naam'
+// obv this folder should be in the terminal of the folder  
+
+ls -l  gives the details for the directories or files present in the directory we're currently in.
+ls -l 'folder ka naam'  obv uk
+ls -R 'folder ka naam'   gives data of all the subdirectories/subfiles. Mtlb terminal jis folder mei h uske andar ke ek folder ki andar ki cheezein.
+ls -t 'older ka naam'  gives in order of last modified. // timestamp ordering.
+// we can also combine many of these commands too like:
+ls -lR 'folder ka naam'
+
+ls -la 'folder ka naam'  mtlb list all the files and folders in the current folder including hidden files.
+ls -lr 'folder ka naam'  mtlb list all the files and folders in the current folder including hidden files in reverse order.
+
+ls .. mtlb previous folder ki list files and folders.
+mkdir -p a/b/c/d/e/f/g/  create a directory and then specifying the path.
+cp -r /circuits/test contracts/ will copy the test folder and all its contents to the contracts folder.
+and -r in the above command means recursive. Which means it will copy the folder and all its contents.
+
+when we arite ls -l we get files with permissions ofc changing file permissions using terminal commands
+
+chmod user/group/others +/- r/w/x file
+
+user/group/others mtlb kiske liye permission change krni h.
++/- mtlb permission deni h ya leni h.
+r/w/x mtlb read/write/execute.
+Example:
+chmod g+wx newscript.sh
+"g" we assumed is a group(we named it g) and +wx means we are giving write and execute permissions to the group.
+// digits are also used for commanding with chmod.
+
+echo "hello world" can be used to display a text in the terminal. which here is "hello world".
+echo "hello world" > file.txt  this will create a file named file.txt and will write "hello world" in it.
+
+head file.txt  this will display the first 10 lines of the file.txt.
+tail file.txt  this will display the last 10 lines of the file.txt.
+head -n 5 file.txt  this will display the first 5 lines of the file.txt.
+tail -n 5 file.txt  this will display the last 5 lines of the file.txt.
+
+if we wanna see our file from limne no. 25 to line no. 29
+USE OF PIPE CHARACTER: |
+if we write command1 | command2 , it will give the output of command1 as the input of command2.
+
+wc file.txt  It will give the number of lines, words, and characters in the file.txt.
+
+grep file.txt 'hanjii' will give all the instaces where hanjii is written in the file.txt.
+
+grep file.txt 'hanjii' | wc -l  will give the stats of hanjii in the file.txt.
+grep "ERROR" file.txt will give all the lines containing "ERROR" in the file.txt.
+
+agr aisi saari lines chahiye jisme koi word naqa hpo for ex: INFO
+grep -v 'INFO' file.txt  will give all the lines NOT containing "INFO" in the file.txt.
+
+we can do a lot of things with SUBSTITUTE COMMANDS. 
+Just remember that then u can use it thru automation. no need for learning all that jargon.
+
+awk is a scripting language designed specifically for text processing and data extraction. can be used in terminal i guess
+📝 1. The Core Syntax
+Every awk command generally follows this simple structure:
+
+bash
+awk 'pattern { action }' filename
+Pattern: When should awk do the action? (If empty, it does the action on every line).
+Action: What should awk do? (Usually it is printing something out).
+Note the single quotes ' ' around the pattern and action block!
+
+🧩 2. The Magic Variables
+awk automatically breaks a line of text into columns (which it calls "fields"). It uses special variables to represent them:
+
+$0 = The entire line.
+$1 = The 1st column.
+$2 = The 2nd column, and so on...
+NR = The current Row/Line Number (Number of Records).
+NF = The Total Columns on the current line (Number of Fields).
+
+🚀 3. Beginner Commands (Copy & Paste Examples)
+Let's say you have a file named students.txt that looks like this:
+
+text
+Alice 85 Math
+Bob 92 Science
+Charlie 78 History
+1. Print Specific Columns
+Print only the names (1st column) and subjects (3rd column):
+
+bash
+awk '{print $1, $3}' students.txt
+2. Print with Line Numbers
+Use the NR variable. This prints: "1. Alice", "2. Bob", etc.
+
+bash
+awk '{print NR".", $1}' students.txt
+3. Basic Filtering (Patterns)
+Print the entire line ($0) ONLY if their score (2nd column) is greater than 80:
+
+bash
+awk '$2 > 80 {print $0}' students.txt
+4. Changing the Separator (The -F Flag)
+By default, awk splits strings by spaces. What if your file is separated by commas (like a .csv file)?
+
+text
+Alice,85,Math
+Tell awk the separator is a comma using -F",":
+
+bash
+awk -F"," '{print $1, $3}' students.csv
+5. Adding BEGIN and END Blocks
+BEGIN block runs once before processing the file. END block runs once after finishing the file.
+
+bash
+awk 'BEGIN {print "--- Students Chart ---"} {print $1} END {print "----------------------"}' students.txt
+💡 Pro Tip for Beginners: The most common and practical way you will use awk as a beginner developer is to grab a specific piece of data from the output of another command using a "pipe" (|). Example:
+
+bash
+ls -l | awk '{print $9}' # This lists only the filenames from the ls -l output
+
+Got it! Here are 4 quick, single-line examples you can copy directly:
+
+1. Print the 1st and 3rd columns of a file:
+
+bash
+awk '{print $1, $3}' data.txt
+2. Print only the lines where the 2nd column is greater than 50:
+
+bash
+awk '$2 > 50 {print $0}' data.txt
+3. Change the separator to a comma (for CSVs) and print the 1st column:
+
+bash
+awk -F"," '{print $1}' data.csv
+4. Count and print the total number of lines in a file:
+
+bash
+awk 'END {print NR}' data.txt
+
+node mei bhot saare packages hote h.
+we can install them using the commands.
+npm install 'name of library'
+
+
