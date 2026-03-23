@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+
+<div class="bg-white p-6 rounded-2xl shadow-lg w-96">
+
+    <h1 class="text-2xl font-bold mb-4 text-center">Todo App</h1>
+
+    <div class="flex gap-2">
+        <input 
+            type="text" 
+            id="todoInput" 
+            placeholder="Enter task"
+            class="border p-2 rounded w-full"
+        >
+        <button 
+            onclick="addTodo()" 
+            class="bg-blue-500 text-white px-4 rounded"
+        >
+            Add
+        </button>
+    </div>
+
+    <ul id="todoList" class="mt-4 space-y-2"></ul>
+
+</div>
+
+<script>
+
+// fetch and display todos
+async function fetchTodos() {
+    const res = await fetch('http://localhost:3000/todos'); // GET request
+    const data = await res.json(); // convert to JS
+
+    const list = document.getElementById('todoList');
+    list.innerHTML = ''; // clear old list
+
+    data.forEach(todo => {
+        const li = document.createElement('li');
+        li.className = "flex justify-between items-center bg-gray-100 p-2 rounded";
+
+        const left = document.createElement('div');
+        left.className = "flex items-center gap-2";
+
+        // checkbox for completed
+        const checkbox = document.createElement('input');
+        checkbox.type = "checkbox";
+        checkbox.checked = todo.completed;
+        checkbox.onchange = () => toggleTodo(todo.id);
+
+        const span = document.createElement('span');
+        span.innerText = todo.task;
+
+        if (todo.completed) {
+            span.style.textDecoration = "line-through"; // strike text
+        }
+
+        left.appendChild(checkbox);
+        left.appendChild(span);
+
+        // delete button
+        const btn = document.createElement('button');
+        btn.innerText = "Delete";
+        btn.className = "bg-red-500 text-white px-2 rounded";
+        btn.onclick = () => deleteTodo(todo.id);
+
+        li.appendChild(left);
+        li.appendChild(btn);
+
+        list.appendChild(li);
+    });
+}
+
+// add new todo
+async function addTodo() {
+    const input = document.getElementById('todoInput');
+
+    if (input.value.trim() === '') return; // prevent empty
+
+    await fetch('http://localhost:3000/todos', {
+        method: 'POST', // send data
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ task: input.value }) // convert to JSON
+    });
+
+    input.value = '';
+    fetchTodos(); // refresh list
+}
+
+// delete todo
+async function deleteTodo(id) {
+    await fetch(`http://localhost:3000/todos/${id}`, {
+        method: 'DELETE'
+    });
+
+    fetchTodos();
+}
+
+// toggle complete
+async function toggleTodo(id) {
+    await fetch(`http://localhost:3000/todos/${id}`, {
+        method: 'PUT'
+    });
+
+    fetchTodos();
+}
+
+// load todos on page start
+fetchTodos();
+
+</script>
+
+</body>
+</html>

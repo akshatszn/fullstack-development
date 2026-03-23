@@ -1,0 +1,30 @@
+Would gpt be fun if only engineers at openai can use it? NAHHh
+thats what http helps in, it exposes our logic/code to the world.
+
+const express = require("express");
+const app = express();
+
+anytime someone comes on route "/", this function will be called or the logic will run we can say.
+
+app.get("/", (req, res) => {
+    const n = req.query.n;
+    const ans = calculateSum(n);
+    res.send(ans.toString());  // converting ans to string is neccessary as sometimes it can misiterpret number as status code.
+});
+
+function calculateSum(n) {
+    let sum = 0;
+    for (let i = 1; i <= n; i++) {
+        sum += i;
+    }
+    return sum;
+}
+
+app.listen(3000, () => {
+    console.log("Server started on port 3000");
+});
+
+Ab to insert a query parameter, one basic way is browser mei jab address(URL) daalte h 
+Toh uss hee ke saath daal dete h.... like...
+
+http://localhost:3000/?n=100
